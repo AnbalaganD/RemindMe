@@ -21,6 +21,15 @@ final class NotificationListViewController: UIViewController {
     
     @objc private func showFilterOption() {
         print(#function)
+        
+        let categoryFilterViewController = CategoryFilterViewController()
+        categoryFilterViewController.modalPresentationStyle = .formSheet
+        
+        if let sheet = categoryFilterViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+        }
+        
+        present(categoryFilterViewController, animated: true)
     }
     
     @objc private func createNotification() {

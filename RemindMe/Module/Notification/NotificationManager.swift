@@ -33,7 +33,7 @@ final class NotificationManager: NSObject, @unchecked Sendable {
         ]
 
         userNotificationCenter.requestAuthorization(options: authorizationOption) { isAuthorized, error in
-            let result: Result<Bool, Error> = if let error {
+            let result: Result<Bool, any Error> = if let error {
                 .failure(error)
             } else {
                 .success(isAuthorized)
@@ -43,7 +43,7 @@ final class NotificationManager: NSObject, @unchecked Sendable {
         }
     }
 
-    func getNotificationSettings(_ completion: @escaping (UNNotificationSettings) -> Void) {
+    func getNotificationSettings(_ completion: @Sendable @escaping (UNNotificationSettings) -> Void) {
         userNotificationCenter.getNotificationSettings(completionHandler: completion)
     }
     
